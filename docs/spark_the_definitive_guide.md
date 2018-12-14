@@ -32,3 +32,33 @@ Spark has two fundamental sets of APIs: the low-level "unstructured" APIs, and t
 When you start Spark in this interactive mode, you implicitly create a SparkSession that manages the Spark Application.
 When you start it through a standalone application, you must create the SparkSession object yourself in your application code.
 
+#### The SparkSession
+
+The SparkSession instance is the way Spark executes user-defined manipulations across the cluster.
+
+#### DataFrames
+
+A DataFrame is the most common Structured API and simply represents a table of data with rows and columns.
+The list that defines the columns and the types within those columns is called the *schema*.
+
+##### Partitions
+
+## Chapter 3
+
+## Chapter 5
+
+Definitionally, a DataFrame consists of a series of *records* (like rows in a table), that are of type `Row`, and a number of *columns* (like columns in a spreadsheet) that represent a computation expression that can be performed on each individual record in the Dataset.
+
+### Schemas
+
+A schema defines the column names and types of a DataFrame.
+
+### DataFrame Transformations
+
+#### Adding Columns
+
+There's also a more formal way of adding a new column to a DataFrame, and that's by using the `withColumn` method on our DataFrame.
+
+#### Removing Columns
+
+## Chapter 6
