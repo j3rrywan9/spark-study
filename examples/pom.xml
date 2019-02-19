@@ -30,12 +30,4 @@
       </plugin>
     </plugins>
   </build>
-
-  <dependencies>
-    <dependency>
-      <groupId>com.typesafe.scala-logging</groupId>
-      <artifactId>scala-logging_${scala.major.version}</artifactId>
-      <version>${scala-logging.version}</version>
-    </dependency>
-  </dependencies>
 </project>
