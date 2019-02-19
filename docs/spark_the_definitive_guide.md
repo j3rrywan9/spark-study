@@ -62,3 +62,36 @@ There's also a more formal way of adding a new column to a DataFrame, and that's
 #### Removing Columns
 
 ## Chapter 6
+
+## Chapter 11
+
+Datasets are the foundational type of the structured APIs.
+Datasets are a strictly JVM language feature that work only with Scala and Java.
+
+In fact, if you use Scala or Java, all "DataFrames" are actually Datasets of type `Row`.
+To efficiently support domain-specific objects, a special concept called an "Encoder" is required.
+The encoder maps the domain-specific type `T` to Spark's internal type system.
+
+### When to Use Datasets
+
+### Creating Datasets
+
+Creating Datasets is somewhat of a manual operation, requiring you to know and define the schemas ahead of time.
+
+#### In Java: Encoders
+
+#### In Scala: Case Classes
+
+To create Datasets in Scala, you define a Scala `case class`.
+
+### Actions
+
+### Transformations
+
+### Joins
+
+#### Grouping and Aggregations
+
+An excellent example is the `groupByKey` method.
+This allows you to group by a specific key in the Dataset and get a typed Dataset in return.
+This function, however, doesn't accept a specific column name but rather a function.
