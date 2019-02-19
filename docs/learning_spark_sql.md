@@ -4,6 +4,11 @@
 
 Spark SQL is at the heart of all applications developed using Spark.
 
+### What is Spark SQL?
+
+Spark SQL is one of the most advanced components of Apache Spark.
+It has been a part of the core distribution since Spark 1.0 and supports Python, Scala, Java, and R programming APIs.
+
 ### Introducing `SparkSession`
 
 In Spark 2.0, `SparkSession` represents a unified entry point for manipulating data in Spark.
@@ -92,3 +97,4 @@ scala> val reviewsParquetDF = spark.read.parquet("file:///Users/aurobindosarkar/
 After the DataFrame is created, you can operate on it as you normally would with the DataFrames created from any other data source.
 Here, we register the DataFrame as a temp view and query it using SQL:
 
+## Using Spark SQL for Data Exploration
