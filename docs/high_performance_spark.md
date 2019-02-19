@@ -53,3 +53,14 @@ The transformations on DataFrames are more relational in nature, with the Datase
 Transformations on DataFrames are similar in concept to RDD transformations, but with a more relational flavor.
 Instead of specifying arbitrary functions, which the optimizer is unable to introspect, you use a restricted expression syntax so the optimizer can have more information.
 As with RDDs, we can broadly break down transformations into simple single DataFrame, multiple DataFrame, key/value, and grouped/windowed transformations.
+
+##### Simple DataFrame transformations and SQL expressions
+
+Simple DataFrame transformations allow us to do most of the standard things one can do when working a row at a time.
+You can still do many of  the same operations defined on RDDs, except using Spark SQL expressions instead of arbitrary functions.
+
+DataFrame functions, like `filter`, accept Spark SQL expressions instead of lambdas.
+These expressions allow the optimizer to understand what the condition represents, and with `filter`, it can often be used to skip reading unnecessary records.
+
+To look up the column, we can either provide the column name on the specific DataFrame or use the implicit `$` operator for column lookup.
+This is especially useful when the DataFrame is anonymous.
