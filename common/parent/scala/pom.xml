@@ -17,6 +17,9 @@
   </parent>
 
   <properties>
+    <hadoop.version>2.8.3</hadoop.version>
+    <jackson.version>2.9.8</jackson.version>
+    <logback.version>1.2.3</logback.version>
     <paranamer.version>2.8</paranamer.version>
     <scala.major.version>2.12</scala.major.version>
     <scala.minor.version>8</scala.minor.version>
@@ -24,6 +27,7 @@
     <scala-library.version>${scala.version}</scala-library.version>
     <scala-logging.version>3.9.0</scala-logging.version>
     <scalatest.version>3.0.5</scalatest.version>
+    <slf4j.version>1.7.25</slf4j.version>
     <spark.version>2.4.0</spark.version>
   </properties>
 
@@ -104,11 +108,50 @@
       <groupId>org.apache.spark</groupId>
       <artifactId>spark-core_${scala.major.version}</artifactId>
       <version>${spark.version}</version>
+      <exclusions>
+        <!-- Following permanently excluded due to bad interaction between log implementations -->
+        <exclusion>
+          <groupId>log4j</groupId>
+          <artifactId>log4j</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-log4j12</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.apache.spark</groupId>
       <artifactId>spark-sql_${scala.major.version}</artifactId>
       <version>${spark.version}</version>
+      <exclusions>
+        <!-- Following permanently excluded due to bad interaction between log implementations -->
+        <exclusion>
+          <groupId>log4j</groupId>
+          <artifactId>log4j</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-log4j12</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <!-- Hadoop -->
+    <dependency>
+      <groupId>org.apache.hadoop</groupId>
+      <artifactId>hadoop-client</artifactId>
+      <version>${hadoop.version}</version>
+      <exclusions>
+        <!-- Following permanently excluded due to bad interaction between log implementations -->
+        <exclusion>
+          <groupId>log4j</groupId>
+          <artifactId>log4j</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-log4j12</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.scala-lang</groupId>
@@ -121,11 +164,70 @@
       <version>${scalatest.version}</version>
       <scope>test</scope>
     </dependency>
+    <!-- Jackson -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-annotations</artifactId>
+      <version>${jackson.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+      <version>${jackson.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>${jackson.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.module</groupId>
+      <artifactId>jackson-module-scala_2.12</artifactId>
+      <version>${jackson.version}</version>
+    </dependency>
     <!-- Workaround for SPARK-22128 -->
     <dependency>
       <groupId>com.thoughtworks.paranamer</groupId>
       <artifactId>paranamer</artifactId>
       <version>${paranamer.version}</version>
+    </dependency>
+    <!-- Logback -->
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-access</artifactId>
+      <version>${logback.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>${logback.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-core</artifactId>
+      <version>${logback.version}</version>
+    </dependency>
+    <!-- SLF4J -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>${slf4j.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>jcl-over-slf4j</artifactId>
+      <version>${slf4j.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>jul-to-slf4j</artifactId>
+      <version>${slf4j.version}</version>
+    </dependency>
+    <!-- Bridge log4j from Spark and Hadoop with our log implementation -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>log4j-over-slf4j</artifactId>
+      <version>${slf4j.version}</version>
     </dependency>
     <dependency>
       <groupId>com.typesafe.scala-logging</groupId>
