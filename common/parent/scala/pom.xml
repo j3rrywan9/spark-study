@@ -19,7 +19,7 @@
   <properties>
     <hadoop.version>2.8.3</hadoop.version>
     <jackson.version>2.9.8</jackson.version>
-    <logback.version>1.2.3</logback.version>
+    <logback.version>1.4.11</logback.version>
     <scala.major.version>2.12</scala.major.version>
     <scala.minor.version>18</scala.minor.version>
     <scala.version>${scala.major.version}.${scala.minor.version}</scala.version>
